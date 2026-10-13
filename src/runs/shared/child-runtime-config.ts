@@ -14,6 +14,12 @@ import type { RequiredChildExtensionSnapshot } from "../../shared/required-child
  * pi-subagents loaded into a child session stays inert.
  */
 export const SUBAGENT_CHILD_ENV = "PI_SUBAGENT_CHILD";
+/**
+ * Pid of the async runner, set by the runner itself. A session's extensions
+ * can compare it with process.pid to learn the process outlives the session;
+ * descendants inherit the value but not the pid.
+ */
+export const SUBAGENT_RUNNER_PID_ENV = "PI_SUBAGENT_RUNNER_PID";
 /** Root parent session id the parent publishes for pi-permission-system ask forwarding. */
 export const SUBAGENT_PARENT_SESSION_ENV = "PI_SUBAGENT_PARENT_SESSION";
 

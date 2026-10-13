@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- An ambient extension that force-exits a headless run on `session_shutdown` with reason `"quit"` could kill the background runner when one of its children ended, so the run failed with "Async runner process N exited with code 0 before writing a result". The runner now sets `PI_SUBAGENT_RUNNER_PID` to its own pid, and an extension can compare it with `process.pid` to learn the process outlives the session; processes spawned from a child inherit the value but do not match it. See [extension-api.md](docs/extension-api.md#background-work-provider-api). ([#2883](https://github.com/nicobailon/pi-subagents/issues/2883))
+
 ## [0.78.0] - 2026-10-12
 
 ### Highlights
