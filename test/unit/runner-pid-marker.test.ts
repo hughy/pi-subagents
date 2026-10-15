@@ -24,7 +24,7 @@ describe("async runner pid marker", () => {
 		const output = execFileSync(
 			process.execPath,
 			["--experimental-strip-types", "--import", "./test/support/register-loader.mjs", "--input-type=module", "--eval", script],
-			{ cwd: projectRoot, env, encoding: "utf-8" },
+			{ cwd: projectRoot, env, encoding: "utf-8", timeout: 60_000 },
 		);
 		const result = JSON.parse(output.trim().split("\n").at(-1)!) as {
 			pid: number;
