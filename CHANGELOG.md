@@ -5,6 +5,7 @@
 ### Fixed
 
 - An ambient extension that force-exits a headless run on `session_shutdown` with reason `"quit"` could kill the background runner when one of its children ended, so the run failed with "Async runner process N exited with code 0 before writing a result". The runner now sets `PI_SUBAGENT_RUNNER_PID` to its own pid, and an extension can compare it with `process.pid` to tell that the process outlives the session. Processes spawned from a child inherit the value but have their own pid. See [extension-api.md](docs/extension-api.md#background-work-provider-api). Thanks to [@hughy](https://github.com/hughy) for [#2885](https://github.com/nicobailon/pi-subagents/pull/2885). ([#2883](https://github.com/nicobailon/pi-subagents/issues/2883))
+- After Pi auto-compacted in the middle of a running turn, the async and Fleet status widgets stayed hidden until the whole run ended, so background subagents showed no status in the TUI or to RPC hosts. They now come back as soon as the compaction finishes. Thanks to [@agustinsacco](https://github.com/agustinsacco) for [#2891](https://github.com/nicobailon/pi-subagents/pull/2891). ([#2890](https://github.com/nicobailon/pi-subagents/issues/2890))
 
 ## [0.78.0] - 2026-10-12
 
